@@ -1,17 +1,22 @@
+import { useState } from "react"
 import Layout from "@/components/Layout"
 import Carousel from "@/components/Carousel"
 
+const regex = /\/embed\/([a-zA-Z0-9_-]+)\?/
+
 export default function HomePage({ popularAnime }) {
-  console.log(popularAnime[0].trailer.embed_url)
+  const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
+  const match = popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
   return (
     <>
-      <iframe
-        className="absolute top-0 left-0 w-full h-screen"
-        src={popularAnime[0].trailer.embed_url}
-      />
       <Layout isTrasparent={true}>
-        <main className="h-screen w-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items center z-10">
-          <section className="h-full w-1/4 flex flex-col justify-center items-center">
+        <main className="h-screen w-full flex items-center">
+          <div className="z-10 fixed top-0 left-0 bg-black/30 w-full h-screen"></div>
+          <iframe
+            className="absolute w-full h-screen z-0"
+            src={`${popularAnime[selectedHeaderIndex].trailer.embed_url}&mute=1&playsinline=1&controls=0&loop=1&playlist=${match[1]}`}
+          />
+          <section className="h-full w-1/4 flex flex-col justify-center items-center p-5 z-20 text-white">
             <h1 className="text-6xl">TENGOKU</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -19,8 +24,13 @@ export default function HomePage({ popularAnime }) {
             </p>
           </section>
 
-          <section className="h-full w-3/4 flex items-end pb-14">
-            <Carousel popularAnime={popularAnime} />
+          <section className="h-full w-3/4 flex items-end pb-14 z-20">
+            <Carousel
+              popularAnime={popularAnime}
+              handleSlideChange={(slideIndex) =>
+                setSelectedHeaderIndex(slideIndex)
+              }
+            />
           </section>
         </main>
       </Layout>
