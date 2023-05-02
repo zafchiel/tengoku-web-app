@@ -13,7 +13,7 @@ function Header({ isTransparent }) {
         <h1 className="text-4xl font-bold">TENGOKU</h1>
       </div>
 
-      <nav className="text-xl flex w-1/5 justify-around">
+      <nav className="text-xl flex w-1/5 justify-around font-medium">
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
       </nav>
