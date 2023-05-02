@@ -6,9 +6,11 @@ import { Autoplay } from "swiper"
 
 // Import Swiper styles
 import "swiper/css"
+import Progressbar from "./Progressbar"
 
 export default function Carousel({ popularAnime, handleSlideChange }) {
   const [loading, setLoading] = useState(true)
+  const [progressBarWidth, setProgressBarWidth] = useState(1)
 
   useEffect(() => {
     setLoading(false)
@@ -18,16 +20,21 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
     handleSlideChange(index)
   }
 
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    setProgressBarWidth(progress)
+  }
+
   return (
     <>
-      (
+      <Progressbar barWidth={progressBarWidth} />
       <Swiper
         slidesPerView={3}
         loop
         autoplay={{
-          delay: 7500,
+          delay: 10000,
           disableOnInteraction: false,
         }}
+        onAutoplayTimeLeft={onAutoplayTimeLeft}
         modules={[Autoplay]}
         className="mySwiper"
         onSlideChange={(e) => handleChangeSlideIndex(e.realIndex)}
@@ -46,7 +53,9 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
               33vw"
                 />
                 <div className="bg-black/50 absolute  bottom-0 left-0 p-3 w-full rounded-b-lg">
-                  <h1 className="text-xl text-white z-10 ">{obj.title}</h1>
+                  <h1 className="text-xl text-white z-10 ">
+                    {obj.title.replaceAll('"', "")}
+                  </h1>
                   <div className="flex gap-2 text-gray-300">
                     {obj.genres.map((e, index) => (
                       <p key={index}>{e.name}</p>
@@ -58,7 +67,6 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
           </>
         ))}
       </Swiper>
-      )
     </>
   )
 }

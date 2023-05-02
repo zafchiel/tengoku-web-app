@@ -4,7 +4,9 @@ function Header({ isTransparent }) {
   return (
     <header
       className={`${
-        isTransparent ? "bg-transparent backdrop-blur-sm" : "bg-blue-600"
+        isTransparent
+          ? "bg-gradient-to-b from-transparent to-transparent backdrop-blur-sm"
+          : "bg-blue-600"
       } h-20 w-full fixed top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
     >
       <div>

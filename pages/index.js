@@ -7,7 +7,11 @@ const regex = /\/embed\/([a-zA-Z0-9_-]+)\?/
 
 export default function HomePage({ popularAnime }) {
   const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
-  const match = popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
+  const regexMatch =
+    popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
+
+  const randomVideoStartSecond = Math.floor(Math.random() * 40)
+  console.log(randomVideoStartSecond)
   return (
     <>
       <Layout isTrasparent={true}>
@@ -21,12 +25,14 @@ export default function HomePage({ popularAnime }) {
             /> */}
           </div>
           <iframe
-            className="absolute w-full h-screen z-0 "
-            src={`${popularAnime[selectedHeaderIndex].trailer.embed_url}&mute=1&playsinline=1&controls=0&loop=1&playlist=${match[1]}`}
+            frameborder="0"
+            className="absolute w-full h-screen -z-10 "
+            src={`
+              ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
           />
-          <section className="h-full w-1/4 flex flex-col justify-center items-center p-5 z-20 text-white">
+          <section className="h-full w-2/5 flex flex-col justify-center items-center p-5 z-20 text-white">
             <h1 className="text-6xl">
-              {popularAnime[selectedHeaderIndex].title}
+              {popularAnime[selectedHeaderIndex].title.replaceAll('"', "")}
             </h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -34,7 +40,7 @@ export default function HomePage({ popularAnime }) {
             </p>
           </section>
 
-          <section className="h-full w-3/4 flex items-end pb-14 z-20">
+          <section className="h-full w-3/5 flex items-end pb-14 z-20">
             <Carousel
               popularAnime={popularAnime}
               handleSlideChange={(slideIndex) =>
