@@ -1,20 +1,15 @@
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
+import Progressbar from "./Progressbar"
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay } from "swiper"
 
 // Import Swiper styles
 import "swiper/css"
-import Progressbar from "./Progressbar"
 
 export default function Carousel({ popularAnime, handleSlideChange }) {
-  const [loading, setLoading] = useState(true)
   const [progressBarWidth, setProgressBarWidth] = useState(1)
-
-  useEffect(() => {
-    setLoading(false)
-  }, [])
 
   const handleChangeSlideIndex = (index) => {
     handleSlideChange(index)
@@ -28,7 +23,6 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
     <>
       <Progressbar barWidth={progressBarWidth} />
       <Swiper
-        slidesPerView={3}
         loop
         autoplay={{
           delay: 10000,
@@ -38,11 +32,22 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         modules={[Autoplay]}
         className="mySwiper"
         onSlideChange={(e) => handleChangeSlideIndex(e.realIndex)}
+        breakpoints={{
+          "@0.00": {
+            slidesPerView: 1,
+          },
+          "@0.75": {
+            slidesPerView: 2,
+          },
+          "@1.75": {
+            slidesPerView: 3,
+          },
+        }}
       >
         {popularAnime.map((obj, index) => (
           <>
             <SwiperSlide key={index}>
-              <div className="relative w-64 h-96 overflow-hidden shadow-2xl">
+              <div className="relative w-32 md:w-44 lg:w-64 h-60 md:h-80  lg:h-96 overflow-hidden shadow-2xl">
                 <Image
                   src={obj.images.jpg.large_image_url}
                   fill

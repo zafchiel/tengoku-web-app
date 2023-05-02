@@ -11,11 +11,10 @@ export default function HomePage({ popularAnime }) {
     popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
 
   const randomVideoStartSecond = Math.floor(Math.random() * 40)
-  console.log(randomVideoStartSecond)
   return (
     <>
       <Layout isTrasparent={true}>
-        <main className="h-screen w-full flex items-center">
+        <main className="h-screen w-full flex-col lg:flex-row flex items-center">
           <div className="z-10 fixed top-0 left-0 bg-black/30 w-full h-screen">
             {/* <Image
               src={popularAnime[selectedHeaderIndex].images.jpg.large_image_url}
@@ -30,17 +29,14 @@ export default function HomePage({ popularAnime }) {
             src={`
               ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
           />
-          <section className="h-full w-2/5 flex flex-col justify-center items-center p-5 z-20 text-white">
-            <h1 className="text-6xl">
+          <section className="h-3/5 lg:h-full w-full lg:w-2/5 flex flex-col justify-center items-center p-5 mt-20 z-20 text-white">
+            <h1 className="text-6xl font-bold mb-3">
               {popularAnime[selectedHeaderIndex].title.replaceAll('"', "")}
             </h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <p>{popularAnime[selectedHeaderIndex].title_english}</p>
           </section>
 
-          <section className="h-full w-3/5 flex items-end pb-14 z-20">
+          <section className="h-2/5 lg:h-full w-full lg:w-3/5 flex items-end p-14 z-20">
             <Carousel
               popularAnime={popularAnime}
               handleSlideChange={(slideIndex) =>
