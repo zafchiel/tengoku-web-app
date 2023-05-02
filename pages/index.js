@@ -13,17 +13,17 @@ export default function HomePage({ popularAnime }) {
       <Layout isTrasparent={true}>
         <main className="h-screen w-full flex items-center">
           <div className="z-10 fixed top-0 left-0 bg-black/30 w-full h-screen">
-            <Image
+            {/* <Image
               src={popularAnime[selectedHeaderIndex].images.jpg.large_image_url}
               fill
               alt="image"
               className="object-cover w-full h-full"
-            />
+            /> */}
           </div>
-          {/* <iframe
-            className="absolute w-full h-screen z-0"
+          <iframe
+            className="absolute w-full h-screen z-0 "
             src={`${popularAnime[selectedHeaderIndex].trailer.embed_url}&mute=1&playsinline=1&controls=0&loop=1&playlist=${match[1]}`}
-          /> */}
+          />
           <section className="h-full w-1/4 flex flex-col justify-center items-center p-5 z-20 text-white">
             <h1 className="text-6xl">
               {popularAnime[selectedHeaderIndex].title}

@@ -5,7 +5,7 @@ function Header({ isTransparent }) {
     <header
       className={`${
         isTransparent ? "bg-transparent backdrop-blur-sm" : "bg-blue-600"
-      } h-20 w-full fixed top-0 left-0 z-20 flex justify-between items-center p-3 `}
+      } h-20 w-full fixed top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
     >
       <div>
         <h1 className="text-4xl">TENGOKU</h1>

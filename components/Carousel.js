@@ -25,7 +25,7 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         slidesPerView={3}
         loop
         autoplay={{
-          delay: 2500,
+          delay: 7500,
           disableOnInteraction: false,
         }}
         modules={[Autoplay]}
@@ -35,12 +35,12 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         {popularAnime.map((obj, index) => (
           <>
             <SwiperSlide key={index}>
-              <div className="relative w-64 h-96 overflow-hidden">
+              <div className="relative w-64 h-96 overflow-hidden shadow-2xl">
                 <Image
                   src={obj.images.jpg.large_image_url}
                   fill
                   alt="image"
-                  className="rounded-lg"
+                  className="rounded-lg "
                   sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
