@@ -22,24 +22,32 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
     <>
       <Progressbar barWidth={progressBarWidth} />
       <Swiper
-        autoplay={{
-          delay: 10000,
-          disableOnInteraction: false,
-        }}
+        height={600}
+        // autoplay={{
+        //   delay: 10000,
+        //   disableOnInteraction: false,
+        // }}
         spaceBetween={30}
         loop
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         modules={[Autoplay]}
         onSlideChange={(e) => handleChangeSlideIndex(e.realIndex)}
+        slidesPerView={1}
         breakpoints={{
-          "@0.00": {
-            slidesPerView: 1,
-          },
-          "@0.75": {
+          // when window width is >= 320px
+          320: {
             slidesPerView: 2,
+            spaceBetween: 20,
           },
-          "@1.75": {
+          // when window width is >= 480px
+          768: {
             slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          // when window width is >= 640px
+          1440: {
+            slidesPerView: 4,
+            spaceBetween: 40,
           },
         }}
       >
@@ -49,7 +57,7 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
               <img
                 src={obj.images.jpg.large_image_url}
                 alt={obj.title}
-                className="object-cover rounded-lg w-full h-full"
+                className="rounded-lg w-full h-full"
               />
               <div className="bg-black/50 absolute  bottom-0 left-0 p-3 w-full rounded-b-lg">
                 <h1 className="text-xl text-white z-10 font-medium">

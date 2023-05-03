@@ -22,7 +22,7 @@ export default function HomePage({ popularAnime }) {
               className="object-cover w-full h-full"
             /> */}
         </div>
-        <main className="max-h-screen h-screen w-full flex-col lg:flex-row flex items-center overflow-hidden">
+        <main className="max-h-screen h-screen w-full flex-col xl:flex-row flex items-center overflow-hidden">
           <iframe
             className="absolute w-full h-screen -z-10 "
             src={`
@@ -35,8 +35,9 @@ export default function HomePage({ popularAnime }) {
             <p>{popularAnime[selectedHeaderIndex].title_english}</p>
           </section>
 
-          <section className="h-2/5 md:h-full w-full flex items-end lg:w-3/5 p-14 z-20">
+          <section className="h-full w-full flex items-end lg:w-3/5 p-14 z-20">
             <Carousel
+              className="h-full"
               popularAnime={popularAnime}
               handleSlideChange={(slideIndex) =>
                 setSelectedHeaderIndex(slideIndex)
