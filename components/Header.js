@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Search from "./Search"
 
 function Header({ isTransparent }) {
   return (
@@ -7,15 +8,19 @@ function Header({ isTransparent }) {
         isTransparent
           ? "bg-gradient-to-b from-transparent to-transparent backdrop-blur-sm"
           : "bg-blue-600"
-      } h-20 w-full fixed top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
+      } h-14 md:h-20 w-full fixed top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
     >
       <div>
-        <h1 className="text-4xl font-bold">TENGOKU</h1>
+        <Link href="/">
+          <h1 className="text-4xl font-bold">TENGOKU</h1>
+        </Link>
       </div>
 
-      <nav className="text-xl flex w-1/5 justify-around font-medium">
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
+      <nav className="text-xl flex gap-3 justify-around items-center font-medium text-white/75 ">
+        <Link href="/about" className="hover:text-white">
+          About
+        </Link>
+        <Search />
       </nav>
     </header>
   )

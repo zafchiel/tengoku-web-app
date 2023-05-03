@@ -21,7 +21,3 @@ iframe {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.swiper-container2 .swiper-wrapper {
-  width: 20000px;
-}

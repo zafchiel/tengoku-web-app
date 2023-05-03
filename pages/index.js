@@ -14,7 +14,7 @@ export default function HomePage({ popularAnime }) {
   return (
     <>
       <Layout isTrasparent={true}>
-        <div className="z-10 fixed top-0 left-0 bg-black/30 w-full h-full">
+        <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full">
           {/* <Image
               src={popularAnime[selectedHeaderIndex].images.jpg.large_image_url}
               fill
