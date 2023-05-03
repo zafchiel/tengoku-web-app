@@ -23,11 +23,11 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
       <Progressbar barWidth={progressBarWidth} />
       <Swiper
         height={600}
-        // autoplay={{
-        //   delay: 10000,
-        //   disableOnInteraction: false,
-        // }}
-        spaceBetween={30}
+        autoplay={{
+          delay: 10000,
+          disableOnInteraction: false,
+        }}
+        spaceBetween={15}
         loop
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         modules={[Autoplay]}
@@ -35,19 +35,16 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         slidesPerView={1}
         breakpoints={{
           // when window width is >= 320px
-          320: {
+          480: {
             slidesPerView: 2,
-            spaceBetween: 20,
           },
           // when window width is >= 480px
           768: {
             slidesPerView: 3,
-            spaceBetween: 30,
           },
           // when window width is >= 640px
           1440: {
             slidesPerView: 4,
-            spaceBetween: 40,
           },
         }}
       >
