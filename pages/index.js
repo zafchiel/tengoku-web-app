@@ -50,7 +50,7 @@ export default function HomePage({ popularAnime }) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     "https://api.jikan.moe/v4/top/anime?filter=airing&limit=6"
   )
@@ -60,5 +60,6 @@ export async function getServerSideProps() {
     props: {
       popularAnime: data,
     },
+    revalidate: 60,
   }
 }

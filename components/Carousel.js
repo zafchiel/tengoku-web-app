@@ -34,15 +34,12 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         onSlideChange={(e) => handleChangeSlideIndex(e.realIndex)}
         slidesPerView={1}
         breakpoints={{
-          // when window width is >= 320px
           480: {
             slidesPerView: 2,
           },
-          // when window width is >= 480px
           768: {
             slidesPerView: 3,
           },
-          // when window width is >= 640px
           1440: {
             slidesPerView: 4,
           },
