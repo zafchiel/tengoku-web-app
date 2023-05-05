@@ -1,24 +1,22 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export default function ListItem({ data }) {
   return (
-    <div class="flex rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 ">
-      <Image
-        class="rounded-l-lg"
-        height={200}
-        width={200}
-        src={data.images.jpg.image_url}
-        alt={data.title}
-      />
-      <div class="flex flex-col justify-start p-6">
-        <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-          {data.title}
-        </h5>
-        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </p>
-      </div>
+    <div className="flex flex-col w-full relative h-full aspect-[2/3]">
+      <Link href={`/details/${data.mal_id}`}>
+        <Image
+          width={200}
+          height={300}
+          className="w-full h-full z-0"
+          src={data.images.jpg.image_url}
+          alt={data.title}
+        />
+        <div className="bg-[#222527] p-2 text-white z-20">
+          <h3>{data.title}</h3>
+        </div>
+        <div className="absolute bg-gradient-to-t from-[#222527]/70 to-transparent w-full h-full bottom-0 left-0 z-10"></div>
+      </Link>
     </div>
   )
 }

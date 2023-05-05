@@ -6,9 +6,9 @@ function Header({ isTransparent }) {
     <header
       className={`${
         isTransparent
-          ? "bg-gradient-to-b from-transparent to-transparent backdrop-blur-sm"
-          : "bg-blue-600"
-      } h-14 md:h-20 w-full fixed top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
+          ? "bg-gradient-to-b from-transparent to-transparent backdrop-blur-sm fixed"
+          : "bg-[#222527] block"
+      } h-14 md:h-20 w-full  top-0 left-0 z-30 flex justify-between items-center p-3 text-white`}
     >
       <div>
         <Link href="/">
