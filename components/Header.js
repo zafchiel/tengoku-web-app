@@ -12,7 +12,9 @@ function Header({ isTransparent }) {
     >
       <div>
         <Link href="/">
-          <h1 className="text-4xl font-bold">TENGOKU</h1>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-stone-500 via-neutral-200 to-stone-500 bg-clip-text text-transparent">
+            TENGOKU
+          </h1>
         </Link>
       </div>
 

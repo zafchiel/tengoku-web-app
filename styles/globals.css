@@ -21,3 +21,12 @@ iframe {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.swiper-slide {
+  padding: 10px;
+}
+
+.swiper-slide-active div:first-child {
+  border-radius: 0.375rem;
+  box-shadow: 5px 5px 10px #e4d0e4, -5px -5px 10px #f2dcf2;
+}

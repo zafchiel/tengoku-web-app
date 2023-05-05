@@ -4,10 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay } from "swiper"
+import { Autoplay, Navigation, Keyboard } from "swiper"
 
 // Import Swiper styles
 import "swiper/css"
+import "swiper/css/navigation"
 
 export default function Carousel({ popularAnime, handleSlideChange }) {
   const [progressBarWidth, setProgressBarWidth] = useState(1)
@@ -17,22 +18,26 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
   }
 
   const onAutoplayTimeLeft = (s, time, progress) => {
-    setProgressBarWidth(progress)
+    setProgressBarWidth(100 - progress * 100)
   }
 
   return (
     <>
       <Progressbar barWidth={progressBarWidth} />
       <Swiper
+        navigation={true}
         height={600}
         autoplay={{
           delay: 10000,
           disableOnInteraction: false,
         }}
+        keyboard={{
+          enabled: true,
+        }}
         spaceBetween={15}
-        loop
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        modules={[Autoplay]}
+        loop={true}
+        modules={[Autoplay, Navigation, Keyboard]}
         onSlideChange={(e) => handleChangeSlideIndex(e.realIndex)}
         slidesPerView={1}
         breakpoints={{
@@ -41,6 +46,10 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
           },
           768: {
             slidesPerView: 3,
+            centeredSlides: true,
+          },
+          1280: {
+            centeredSlides: false,
           },
           1440: {
             slidesPerView: 4,
@@ -50,13 +59,13 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         {popularAnime.map((obj, index) => (
           <SwiperSlide key={index}>
             <Link href={`/details/${obj.mal_id}`}>
-              <div className="w-full h-full rounded-lg">
+              <div className="w-full h-full rounded-md overflow-hidden">
                 <Image
                   width={300}
                   height={400}
                   src={obj.images.jpg.large_image_url}
                   alt={obj.title}
-                  className="rounded-lg aspect-[3/4]"
+                  className="rounded-lg aspect-[3/4] hover:scale-110 duration-200 ease-in-out"
                 />
                 <div className="bg-black/50 absolute  bottom-0 left-0 p-3 w-full rounded-b-lg">
                   <h1 className="text-xl text-white z-10 font-medium">

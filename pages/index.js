@@ -25,6 +25,7 @@ export default function HomePage({ popularAnime }) {
         <main className="max-h-screen h-screen w-full flex-col xl:flex-row flex items-center overflow-hidden">
           <iframe
             className="absolute w-full h-screen -z-10 "
+            onLoad={() => console.log("loaded")}
             src={`
               ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
           />

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function ListItem({ data }) {
   return (
-    <div className="flex flex-col w-full relative h-full aspect-[2/3]">
+    <div className="flex flex-col w-full relative min-h-[300px] h-full aspect-[2/3]">
       <Link href={`/details/${data.mal_id}`}>
         <Image
           width={200}
