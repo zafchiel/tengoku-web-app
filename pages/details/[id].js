@@ -3,7 +3,9 @@ import Layout from "@/components/Layout"
 export default function DetailsPage({ data }) {
   return (
     <Layout>
-      <h1>{data.title}</h1>
+      <main className=" w-full h-full">
+        <h1 className="text-white">{data.title}</h1>
+      </main>
     </Layout>
   )
 }

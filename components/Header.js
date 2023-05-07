@@ -18,7 +18,7 @@ function Header({ isTransparent }) {
         </Link>
       </div>
 
-      <nav className="text-xl flex gap-3 justify-around items-center font-medium text-white/75 ">
+      <nav className="text-xl flex gap-3 justify-around items-center font-medium text-white/75 relative">
         <Link href="/about" className="hover:text-white">
           About
         </Link>
