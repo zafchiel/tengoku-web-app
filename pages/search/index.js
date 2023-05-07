@@ -29,19 +29,28 @@ export default function SearchResultsPage({ data, pagination }) {
 }
 
 export async function getServerSideProps({ query: { searchTerm } }) {
+  let data
   const params = new URLSearchParams({
     q: searchTerm,
+    letters: searchTerm,
     limit: "25",
     order_by: "popularity",
-    min_score: "4",
     rating: ["pg", "pg13", "r17", "r"],
   })
   const res = await fetch(`https://api.jikan.moe/v4/anime?${params}`)
-  const { data, pagination } = await res.json()
+  data = await res.json()
+
+  // If there is no results
+  if (data.data.length === 0) {
+    const res = await fetch(
+      `https://api.jikan.moe/v4/anime?letter=${searchTerm}`
+    )
+    data = await res.json()
+  }
   return {
     props: {
-      data,
-      pagination,
+      data: data.data,
+      pagination: data.pagination,
     },
   }
 }
