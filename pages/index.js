@@ -1,35 +1,67 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Layout from "@/components/Layout"
 import Carousel from "@/components/Carousel"
+import YouTube from "react-youtube"
 
 const regex = /\/embed\/([a-zA-Z0-9_-]+)\?/
 
 export default function HomePage({ popularAnime }) {
   const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+
   const regexMatch =
     popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
 
   const randomVideoStartSecond = Math.floor(Math.random() * 40)
+
+  useEffect(() => {
+    setVideoLoaded(false)
+  }, [selectedHeaderIndex])
+
+  const handleLoadedVideo = () => {
+    setVideoLoaded(true)
+  }
+
   return (
     <>
       <Layout isTrasparent={true}>
         <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full">
-          {/* <Image
-              src={popularAnime[selectedHeaderIndex].images.jpg.large_image_url}
-              fill
-              alt="image"
-              className="object-cover w-full h-full"
-            /> */}
+          {/* <iframe
+            className="absolute w-full h-screen -z-10 "
+            onLoad={handleLoadedVideo}
+            src={`
+                ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
+          /> */}
+
+          <YouTube
+            videoId={regexMatch[1]}
+            iframeClassName={`absolute w-full h-screen -z-10 ${
+              !videoLoaded && "hidden"
+            }`}
+            onPlay={handleLoadedVideo}
+            opts={{
+              playerVars: {
+                autoplay: 1,
+                controls: 0,
+                mute: 1,
+                disablekb: 1,
+                iv_load_policy: 3,
+                modestbranding: 1,
+                showinfo: 0,
+                start: randomVideoStartSecond,
+              },
+            }}
+          />
+          <Image
+            src="/bg_placeholder.png"
+            fill
+            alt="image"
+            className="object-cover w-full h-full -z-20"
+          />
         </div>
         <main className="max-h-screen h-screen w-full flex-col xl:flex-row flex items-center overflow-hidden">
-          <iframe
-            className="absolute w-full h-screen -z-10 "
-            onLoad={() => console.log("loaded")}
-            src={`
-              ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
-          />
           <section className="h-3/5 lg:h-full w-full lg:w-2/5 flex flex-col justify-center items-center p-5 mt-20 z-20 text-white">
             <Link href={`/details/${popularAnime[selectedHeaderIndex].mal_id}`}>
               <h1 className="text-4xl md:text-6xl font-bold mb-3">

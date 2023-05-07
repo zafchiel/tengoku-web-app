@@ -3,19 +3,20 @@ import Link from "next/link"
 
 export default function ListItem({ data }) {
   return (
-    <div className="flex flex-col overflow-hidden min-h-[300px] relative aspect-[2/3]">
+    <div className="flex flex-col overflow-hidden min-h-[200px] relative aspect-[2/3]">
       <Link href={`/details/${data?.mal_id}`}>
         <Image
-          width={200}
-          height={300}
-          className="w-full "
+          width={100}
+          height={200}
+          className="w-full hover:scale-110 duration-300 ease-in-out"
           src={data?.images.jpg.image_url}
           alt={data?.title}
         />
-        <div className="bg-[#2a2c31] p-2 text-white z-20 absolute bottom-0 left-0 w-full h-1/5">
+        <div className="bg-[#2a2c31] h-2/5 md:h-1/5 p-2 text-white z-20 absolute bottom-0 left-0 w-full">
           <h3>{data?.title}</h3>
+          <p>{data?.type}</p>
         </div>
-        <div className="absolute bg-gradient-to-t from-[#2a2c31] to-transparent w-full h-full bottom-[20%] left-0 z-10"></div>
+        <div className="absolute pointer-events-none bg-gradient-to-t from-[#2a2c31] to-transparent w-full h-full bottom-2 left-0 z-10"></div>
       </Link>
     </div>
   )

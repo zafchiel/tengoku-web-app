@@ -19,7 +19,7 @@ export default function SearchResultsPage({ data, pagination, searchTerm }) {
   return (
     <Layout>
       <Pagination pagination={pagination} searchTerm={searchTerm} />
-      <main className="w-full p-1 md:p-4 px-10 gap-2 auto-rows-fr grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <main className="w-full p-1 md:p-4 gap-2 auto-rows-fr grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {data.length === 0 ? (
           <h1>Not Found</h1>
         ) : (
@@ -35,11 +35,12 @@ export async function getServerSideProps({ query: { searchTerm, page = 1 } }) {
   let data
   const params = new URLSearchParams({
     q: searchTerm,
-    letters: searchTerm,
-    limit: "10",
-    order_by: "rating",
-    rating: ["pg", "pg13", "r17", "r"],
     page,
+    letters: searchTerm,
+    type: ["tv", "movie", "ova", "ona"],
+    limit: "10",
+    order_by: "popularity",
+    rating: ["pg", "pg13", "r17", "r"],
   })
   const res = await fetch(`https://api.jikan.moe/v4/anime?${params}`)
   data = await res.json()
