@@ -25,6 +25,10 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
     <>
       <Progressbar barWidth={progressBarWidth} />
       <Swiper
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-navigation-size": "3rem",
+        }}
         navigation={true}
         height={600}
         autoplay={{
@@ -52,20 +56,21 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
             centeredSlides: false,
           },
           1440: {
-            slidesPerView: 4,
+            slidesPerView: 3,
           },
         }}
+        className="mySwiper"
       >
         {popularAnime.map((obj, index) => (
           <SwiperSlide key={index}>
             <Link href={`/details/${obj.mal_id}`}>
-              <div className="w-full h-full rounded-md overflow-hidden">
+              <div className="w-full h-full rounded-md relative overflow-hidden shadow-md">
                 <Image
                   width={300}
                   height={400}
                   src={obj.images.jpg.large_image_url}
                   alt={obj.title}
-                  className="rounded-lg aspect-[3/4] hover:scale-110 duration-200 ease-in-out"
+                  className="rounded-lg aspect-[3/4] "
                 />
                 <div className="bg-black/50 absolute  bottom-0 left-0 p-3 w-full rounded-b-lg">
                   <h1 className="text-xl text-white z-10 font-medium">

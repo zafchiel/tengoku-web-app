@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import Layout from "@/components/Layout"
 import Carousel from "@/components/Carousel"
 
@@ -30,10 +31,12 @@ export default function HomePage({ popularAnime }) {
               ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
           />
           <section className="h-3/5 lg:h-full w-full lg:w-2/5 flex flex-col justify-center items-center p-5 mt-20 z-20 text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-3">
-              {popularAnime[selectedHeaderIndex].title.replaceAll('"', "")}
-            </h1>
-            <p>{popularAnime[selectedHeaderIndex].title_english}</p>
+            <Link href={`/details/${popularAnime[selectedHeaderIndex].mal_id}`}>
+              <h1 className="text-4xl md:text-6xl font-bold mb-3">
+                {popularAnime[selectedHeaderIndex].title.replaceAll('"', "")}
+              </h1>
+              <p>{popularAnime[selectedHeaderIndex].title_english}</p>
+            </Link>
           </section>
 
           <section className="h-full w-full flex items-end lg:w-3/5 p-14 z-20">
