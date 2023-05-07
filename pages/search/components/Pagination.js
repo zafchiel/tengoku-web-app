@@ -35,7 +35,7 @@ export default function Pagination({ pagination, searchTerm }) {
         <Link
           className={`${
             router.query.page === p.toString()
-              ? "bg-neutral-700 text-white"
+              ? "bg-neutral-600 text-white"
               : ""
           } relative block rounded bg-transparent px-3 py-1.5 text-sm transition-all duration-300bg-neutral-100 text-white hover:bg-neutral-700 hover:text-white`}
           key={p}

@@ -16,10 +16,6 @@ export default function HomePage({ popularAnime }) {
 
   const randomVideoStartSecond = Math.floor(Math.random() * 40)
 
-  useEffect(() => {
-    setVideoLoaded(false)
-  }, [selectedHeaderIndex])
-
   const handleLoadedVideo = () => {
     setVideoLoaded(true)
   }
@@ -27,40 +23,34 @@ export default function HomePage({ popularAnime }) {
   return (
     <>
       <Layout isTrasparent={true}>
-        <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full">
-          {/* <iframe
-            className="absolute w-full h-screen -z-10 "
-            onLoad={handleLoadedVideo}
-            src={`
-                ${popularAnime[selectedHeaderIndex].trailer.embed_url}&showinfo=0&mute=1&start=${randomVideoStartSecond}&playsinline=1&controls=0&loop=1&playlist=${regexMatch[1]}&cc_load_policy=0&iv_load_policy=3&modestbranding=1`}
-          /> */}
-
-          <YouTube
-            videoId={regexMatch[1]}
-            iframeClassName={`absolute w-full h-screen -z-10 ${
-              !videoLoaded && "hidden"
-            }`}
-            onPlay={handleLoadedVideo}
-            opts={{
-              playerVars: {
-                autoplay: 1,
-                controls: 0,
-                mute: 1,
-                disablekb: 1,
-                iv_load_policy: 3,
-                modestbranding: 1,
-                showinfo: 0,
-                start: randomVideoStartSecond,
-              },
-            }}
-          />
-          <Image
-            src="/bg_placeholder.png"
-            fill
-            alt="image"
-            className="object-cover w-full h-full -z-20"
-          />
-        </div>
+        <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full overflow-hidden"></div>
+        <YouTube
+          videoId={regexMatch[1]}
+          iframeClassName={`absolute w-full h-screen -z-10 ${
+            !videoLoaded && "hidden"
+          }`}
+          onError={() => setVideoLoaded(false)}
+          onPlay={handleLoadedVideo}
+          opts={{
+            playerVars: {
+              autoplay: 1,
+              controls: 0,
+              mute: 1,
+              disablekb: 1,
+              iv_load_policy: 3,
+              modestbranding: 1,
+              showinfo: 0,
+              start: randomVideoStartSecond,
+            },
+          }}
+        />
+        <Image
+          src="/bg_placeholder.png"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          alt="image"
+          className="object-cover w-full h-full -z-20"
+        />
         <main className="max-h-screen h-screen w-full flex-col xl:flex-row flex items-center overflow-hidden">
           <section className="h-3/5 lg:h-full w-full lg:w-2/5 flex flex-col justify-center items-center p-5 mt-20 z-20 text-white">
             <Link href={`/details/${popularAnime[selectedHeaderIndex].mal_id}`}>
