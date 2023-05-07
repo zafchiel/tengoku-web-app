@@ -6,21 +6,21 @@ import { FaCircle } from "react-icons/fa"
 export default function SearchResults({ searchResults, loading }) {
   if (searchResults.length > 0) {
     return (
-      <div className="absolute right-0 -bottom-96 bg-gray-500 ">
+      <div className="dropdown-content absolute right-0 z-50 bg-gray-500 duration-300 ease-linear">
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div className="flex flex-col">
+          <div className="flex flex-col  ">
             {searchResults.map((result, index) => (
               <Link href={`/details/${result.mal_id}`} key={index}>
-                <div className="flex gap-2 border-b border-dashed h-24 w-72 p-4 bg-[#33353c]">
+                <div className="flex gap-2 border-b border-dashed  h-24 w-72 p-4 bg-[#33353c]">
                   <Image
                     width={40}
                     height={55}
                     src={result.images.jpg.small_image_url}
                     alt={result.title}
                   />
-                  <div className="flex flex-col justify-between text-left h-full w-full">
+                  <div className="flex flex-col justify-between text-left w-full">
                     <h3 className="text-base text-white">
                       {result.title_english}
                     </h3>
@@ -36,7 +36,7 @@ export default function SearchResults({ searchResults, loading }) {
                           result.aired.prop.from.year}
                       </p>
                       <FaCircle />
-                      <p>{result.episodes}</p>
+                      <p>{"EP " + result.episodes}</p>
                     </div>
                   </div>
                 </div>

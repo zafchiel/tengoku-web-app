@@ -40,3 +40,10 @@ iframe {
   transition: 0.2s ease-in-out;
 }
 /* hover:scale-110 duration-200 ease-in-out */
+
+.dropdown .dropdown-content {
+  display: none;
+}
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}

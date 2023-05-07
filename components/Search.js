@@ -21,7 +21,7 @@ export default function Search() {
     // If there is no results
     if (data.length === 0) {
       const res = await fetch(
-        `https://api.jikan.moe/v4/anime?letter=${searchTerm}&limit=3`
+        `https://api.jikan.moe/v4/anime?letter=${searchTerm}&limit=5`
       )
       const { data } = await res.json()
       setSearchResults(data)
@@ -46,7 +46,7 @@ export default function Search() {
     router.push(`/search?searchTerm=${searchTerm}`)
   }
   return (
-    <>
+    <div className="dropdown relative inline-block">
       <div className="relative flex justify-center items-center gap-2">
         <form onSubmit={handleSubmit}>
           <button className="absolute right-0 flex items-center justify-center rounded-full w-8 h-8 bg-transparent pointer-events-none outline-none border-none ease-linear duration-200 ">
@@ -60,8 +60,7 @@ export default function Search() {
           />
         </form>
       </div>
-
       <SearchResults searchResults={searchResults} loading={loading} />
-    </>
+    </div>
   )
 }
