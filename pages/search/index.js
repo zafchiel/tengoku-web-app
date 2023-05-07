@@ -17,7 +17,7 @@ export default function SearchResultsPage({ data, pagination }) {
 
   return (
     <Layout>
-      <main className="w-full p-1 md:p-4 px-10 gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <main className="w-full p-1 md:p-4 px-10 gap-2 auto-rows-fr grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {data.length === 0 ? (
           <h1>Not Found</h1>
         ) : (
