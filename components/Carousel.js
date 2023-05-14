@@ -68,7 +68,7 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
                 <Image
                   width={300}
                   height={400}
-                  src={obj.images.jpg.large_image_url}
+                  src={obj.images.webp.large_image_url}
                   alt={obj.title}
                   className="rounded-lg aspect-[3/4] "
                 />

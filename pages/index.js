@@ -45,7 +45,7 @@ export default function HomePage({ popularAnime }) {
           }}
         />
         <Image
-          src="/bg_placeholder.png"
+          src="/bg_placeholder.webp"
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="image"

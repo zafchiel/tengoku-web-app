@@ -10,10 +10,10 @@ export default function ListItem({ data }) {
           height={600}
           className="w-full hover:scale-110 duration-300 ease-in-out"
           src={
-            data?.images.jpg.image_url !==
+            data?.images.webp.image_url !==
             "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
-              ? data?.images.jpg.image_url
-              : "/no_image.png"
+              ? data?.images.webp.image_url
+              : "/no_image.webp"
           }
           alt={data?.title}
         />
