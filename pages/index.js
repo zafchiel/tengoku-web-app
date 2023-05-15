@@ -6,15 +6,20 @@ import Carousel from "@/components/Carousel"
 import YouTube from "react-youtube"
 
 const regex = /\/embed\/([a-zA-Z0-9_-]+)\?/
+const randomVideoStartSecond = Math.floor(Math.random() * 40)
 
 export default function HomePage({ popularAnime }) {
   const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
+  const [videoIdsArray, setVideoIdsArray] = useState(
+    popularAnime[0].trailer.embed_url.match(regex)
+  )
   const [videoLoaded, setVideoLoaded] = useState(false)
 
-  const regexMatch =
-    popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
-
-  const randomVideoStartSecond = Math.floor(Math.random() * 40)
+  useEffect(() => {
+    setVideoIdsArray(
+      popularAnime[selectedHeaderIndex].trailer.embed_url.match(regex)
+    )
+  }, [selectedHeaderIndex, popularAnime])
 
   const handleLoadedVideo = () => {
     setVideoLoaded(true)
@@ -25,12 +30,13 @@ export default function HomePage({ popularAnime }) {
       <Layout isTrasparent={true}>
         <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full overflow-hidden"></div>
         <YouTube
-          videoId={regexMatch[1]}
+          videoId={videoIdsArray[1]}
           iframeClassName={`absolute w-full h-screen -z-10 ${
             !videoLoaded && "hidden"
           }`}
           onError={() => setVideoLoaded(false)}
           onPlay={handleLoadedVideo}
+          onEnd={() => setVideoLoaded(false)}
           opts={{
             playerVars: {
               autoplay: 1,
@@ -45,7 +51,7 @@ export default function HomePage({ popularAnime }) {
           }}
         />
         <Image
-          src="/bg_placeholder.webp"
+          src={`https://img.youtube.com/vi/${videoIdsArray[1]}/maxresdefault.jpg`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="image"
