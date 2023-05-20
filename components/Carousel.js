@@ -64,16 +64,16 @@ export default function Carousel({ popularAnime, handleSlideChange }) {
         {popularAnime.map((obj, index) => (
           <SwiperSlide key={index}>
             <Link href={`/details/${obj.mal_id}`}>
-              <div className="w-full h-full rounded-md relative overflow-hidden shadow-md">
+              <div className="relative h-full w-full overflow-hidden rounded-md shadow-md">
                 <Image
                   width={300}
                   height={400}
                   src={obj.images.webp.large_image_url}
                   alt={obj.title}
-                  className="rounded-lg aspect-[3/4] "
+                  className="aspect-[3/4] rounded-lg "
                 />
-                <div className="bg-black/50 absolute  bottom-0 left-0 p-3 w-full rounded-b-lg">
-                  <h1 className="text-xl text-white z-10 font-medium">
+                <div className="absolute bottom-0  left-0 w-full rounded-b-lg bg-black/50 p-3">
+                  <h1 className="z-10 text-xl font-medium text-white">
                     {obj.title.replaceAll('"', "")}
                   </h1>
                   <div className="flex gap-2 text-gray-300">

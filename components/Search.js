@@ -47,16 +47,16 @@ export default function Search() {
   }
   return (
     <div className="dropdown relative inline-block">
-      <div className="relative flex justify-center items-center gap-2">
+      <div className="relative flex items-center justify-center gap-2">
         <form onSubmit={handleSubmit}>
-          <button className="absolute right-0 flex items-center justify-center rounded-full w-8 h-8 bg-transparent pointer-events-none outline-none border-none ease-linear duration-200 ">
+          <button className="pointer-events-none absolute right-0 flex h-8 w-8 items-center justify-center rounded-full border-none bg-transparent outline-none duration-200 ease-linear ">
             <FaSearch />
           </button>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="outline-none w-9 h-9 ease-in-out duration-500 bg-transparent pr-7 cursor-pointer focus:w-40 focus:rounded-none focus:border-b border-white"
+            className="h-9 w-9 cursor-pointer border-white bg-transparent pr-7 outline-none duration-500 ease-in-out focus:w-40 focus:rounded-none focus:border-b"
           />
         </form>
       </div>
