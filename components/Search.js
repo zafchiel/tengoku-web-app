@@ -1,44 +1,44 @@
 import { useEffect, useState } from "react"
 import { FaSearch } from "react-icons/fa"
 import { useRouter } from "next/router"
+import { useDebounce } from "use-debounce"
 import SearchResults from "./SearchResults"
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("")
+  const [debouncedTerm] = useDebounce(searchTerm, 1000)
   const [searchResults, setSearchResults] = useState([])
   const [loading, setLoading] = useState(false)
 
   const router = useRouter()
 
-  const fetchPreview = async (searchTerm) => {
-    setLoading(true)
-    const res = await fetch(
-      `https://api.jikan.moe/v4/anime?q=${searchTerm}&limit=3}`
-    )
+  const fetchPreview = async (q) => {
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${q}&limit=3`)
     const { data } = await res.json()
     setSearchResults(data)
 
     // If there is no results
     if (data.length === 0) {
       const res = await fetch(
-        `https://api.jikan.moe/v4/anime?letter=${searchTerm}&limit=5`
+        `https://api.jikan.moe/v4/anime?letter=${q}&limit=5`
       )
       const { data } = await res.json()
       setSearchResults(data)
     }
-
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
+    setLoading(false)
   }
+
+  useEffect(() => {
+    setLoading(true)
+  }, [searchTerm])
 
   useEffect(() => {
     if (searchTerm.length === 0) {
       setSearchResults([])
     } else {
-      if (!loading) fetchPreview(searchTerm)
+      fetchPreview(debouncedTerm)
     }
-  }, [searchTerm])
+  }, [debouncedTerm])
 
   const handleSubmit = (e) => {
     e.preventDefault()

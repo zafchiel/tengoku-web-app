@@ -28,7 +28,7 @@ export default function HomePage({ popularAnime }) {
   return (
     <>
       <Layout isTrasparent={true}>
-        <div className="z-10 fixed top-0 left-0 bg-black/40 w-full h-full overflow-hidden"></div>
+        <div className="fixed left-0 top-0 z-10 h-full w-full overflow-hidden bg-black/40"></div>
         <YouTube
           videoId={videoIdsArray[1]}
           iframeClassName={`absolute w-full h-screen -z-10 ${
@@ -55,19 +55,19 @@ export default function HomePage({ popularAnime }) {
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="image"
-          className="object-cover w-full h-full -z-20"
+          className="-z-20 h-full w-full object-cover"
         />
-        <main className="max-h-screen h-screen w-full flex-col xl:flex-row flex items-center overflow-hidden">
-          <section className="h-3/5 lg:h-full w-full lg:w-2/5 flex flex-col justify-center items-center p-5 mt-20 z-20 text-white">
+        <main className="flex h-screen max-h-screen w-full flex-col items-center overflow-hidden xl:flex-row">
+          <section className="z-20 mt-20 flex h-3/5 w-full flex-col items-center justify-center p-5 text-white lg:h-full lg:w-2/5">
             <Link href={`/details/${popularAnime[selectedHeaderIndex].mal_id}`}>
-              <h1 className="text-4xl md:text-6xl font-bold mb-3">
+              <h1 className="mb-3 text-4xl font-bold md:text-6xl">
                 {popularAnime[selectedHeaderIndex].title.replaceAll('"', "")}
               </h1>
               <p>{popularAnime[selectedHeaderIndex].title_english}</p>
             </Link>
           </section>
 
-          <section className="h-full w-full flex items-end lg:w-3/5 p-14 z-20">
+          <section className="z-20 flex h-full w-full items-end p-14 lg:w-3/5">
             <Carousel
               className="h-full"
               popularAnime={popularAnime}

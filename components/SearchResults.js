@@ -8,7 +8,7 @@ export default function SearchResults({ searchResults, loading }) {
     return (
       <div className="dropdown-content absolute right-0 z-50 bg-gray-500 duration-300 ease-linear">
         {loading ? (
-          <div className="bg-[#33353c] flex justify-center items-center h-96 w-72">
+          <div className="flex h-96 w-72 items-center justify-center bg-[#33353c]">
             <svg className="h-10 w-10 animate-spin" viewBox="3 3 18 18">
               <path
                 className="fill-transparent"
@@ -24,19 +24,19 @@ export default function SearchResults({ searchResults, loading }) {
           <div className="flex flex-col  ">
             {searchResults.map((result, index) => (
               <Link href={`/details/${result.mal_id}`} key={index}>
-                <div className="flex gap-2 border-b border-dashed  h-24 w-72 p-4 bg-[#33353c]">
+                <div className="flex h-24 w-72 gap-2  border-b border-dashed bg-[#33353c] p-4">
                   <Image
                     width={40}
                     height={55}
                     src={result.images.jpg.small_image_url}
                     alt={result.title}
                   />
-                  <div className="flex flex-col justify-between text-left w-full">
+                  <div className="flex w-full flex-col justify-between text-left">
                     <h3 className="text-base text-white">
                       {result.title_english}
                     </h3>
                     <h3 className="text-sm text-white/70">{result.title}</h3>
-                    <div className="flex text-xs items-center gap-2 justify-between w-4/5">
+                    <div className="flex w-4/5 items-center justify-between gap-2 text-xs">
                       <p className="text-white">{result.type}</p>
                       <FaCircle />
                       <p>
@@ -59,4 +59,9 @@ export default function SearchResults({ searchResults, loading }) {
     )
   }
   return null
+}
+
+SearchResults.defaultProps = {
+  searchResults: [],
+  loading: true,
 }
