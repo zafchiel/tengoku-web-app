@@ -46,7 +46,7 @@ export default function Paginate({
           <Link
             className={`
             ${
-              currentPage === pageNumber && "bg-red-700"
+              currentPage === pageNumber && "bg-neutral-700"
             } relative  block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all duration-300 hover:bg-neutral-700`}
             key={index}
             href={{

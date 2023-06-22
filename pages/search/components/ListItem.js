@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import Dot from "@/assets/icons/Dot"
 
 export default function ListItem({ data }) {
   return (
@@ -8,7 +9,7 @@ export default function ListItem({ data }) {
         <Image
           width={500}
           height={600}
-          className="aspect-[5/6] w-full object-cover duration-300 ease-in-out hover:scale-110"
+          className="aspect-[2/3] w-full object-cover duration-300 ease-in-out hover:scale-110"
           src={
             data?.images.webp.image_url !==
             "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
@@ -17,9 +18,15 @@ export default function ListItem({ data }) {
           }
           alt={data?.title}
         />
-        <div className="absolute bottom-0 left-0 z-20 h-2/5 w-full bg-[#2a2c31] p-2 text-white md:h-1/5">
+        <div className="min-h-1/5 absolute bottom-0 left-0 z-20 w-full bg-[#2a2c31] p-2 text-white">
           <h3>{data?.title}</h3>
-          <p className="text-neutral-400">{data?.type}</p>
+          <div className="flex text-neutral-400">
+            <p>{data?.type}</p>
+            <Dot color={"#a3a3a3"} />
+            <p>{data?.episodes}EP</p>
+            <Dot color={"#a3a3a3"} />
+            <p>{data?.score}&#11088;</p>
+          </div>
         </div>
         <div className="pointer-events-none absolute bottom-2 left-0 z-10 h-full w-full bg-gradient-to-t from-[#2a2c31] to-transparent"></div>
       </Link>
