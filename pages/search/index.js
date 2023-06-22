@@ -28,6 +28,12 @@ export default function SearchResultsPage({ data, pagination, searchTerm }) {
           data.map((element, index) => <ListItem key={index} data={element} />)
         )}
       </main>
+      <Paginate
+        currentPage={pagination.current_page}
+        totalCount={pagination.items.total}
+        pageSize={pagination.items.per_page}
+        searchTerm={searchTerm}
+      />
     </Layout>
   )
 }
