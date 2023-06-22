@@ -1,9 +1,6 @@
 import Link from "next/link"
-import { useRouter } from "next/router"
 
 export default function Pagination({ pagination, searchTerm }) {
-  const router = useRouter()
-
   const {
     current_page,
     last_visible_page,
@@ -15,10 +12,10 @@ export default function Pagination({ pagination, searchTerm }) {
   if (pages.length === 1) return null
 
   return (
-    <div className="flex p-2 justify-center items-center w-full">
+    <div className="flex w-full items-center justify-center p-2">
       {current_page > 1 && (
         <Link
-          className="relative block rounded bg-transparent px-3 py-1.5 text-sm transition-all duration-300  text-white hover:bg-neutral-700 hover:text-white"
+          className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all  duration-300 hover:bg-neutral-700 "
           href={{
             pathname: "/search",
             query: {
@@ -33,11 +30,10 @@ export default function Pagination({ pagination, searchTerm }) {
 
       {pages.map((p) => (
         <Link
-          className={`${
-            router.query.page === p.toString()
-              ? "bg-neutral-600 text-white"
-              : ""
-          } relative block rounded bg-transparent px-3 py-1.5 text-sm transition-all duration-300bg-neutral-100 text-white hover:bg-neutral-700 hover:text-white`}
+          className={`
+            ${
+              current_page === p && "bg-red-700"
+            } relative  block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all duration-300 hover:bg-neutral-700`}
           key={p}
           href={{
             pathname: "/search",
@@ -53,7 +49,7 @@ export default function Pagination({ pagination, searchTerm }) {
 
       {pagination.has_next_page && (
         <Link
-          className="relative block rounded bg-transparent px-3 py-1.5 text-sm transition-all duration-300  text-white hover:bg-neutral-700 hover:text-white"
+          className="relative block rounded bg-transparent px-3 py-1.5 text-sm text-white transition-all  duration-300 hover:bg-neutral-700 "
           href={{
             pathname: "/search",
             query: {

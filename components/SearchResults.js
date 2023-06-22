@@ -6,7 +6,7 @@ import { FaCircle } from "react-icons/fa"
 export default function SearchResults({ searchResults, loading }) {
   if (searchResults.length > 0) {
     return (
-      <div className="dropdown-content absolute right-0 z-50 bg-gray-500 duration-300 ease-linear">
+      <div className="dropdown-content absolute right-0 z-50 overflow-hidden bg-gray-500 duration-300 ease-linear">
         {loading ? (
           <div className="flex h-96 w-72 items-center justify-center bg-[#33353c]">
             <svg className="h-10 w-10 animate-spin" viewBox="3 3 18 18">

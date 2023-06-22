@@ -1,9 +1,15 @@
 import Header from "./Header"
 import Head from "next/head"
 
-export default function Layout({ isTrasparent, title, children }) {
+export default function Layout({
+  isTrasparent,
+  title,
+  children,
+  className,
+  ...props
+}) {
   return (
-    <div className="relative">
+    <div className={`${className} relative`} {...props}>
       <Head>
         <title>{title}</title>
       </Head>
