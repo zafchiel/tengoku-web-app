@@ -1,6 +1,25 @@
 import Layout from "@/components/Layout"
+import slugify from "@/utils/slugify"
+import { useEffect } from "react"
 
 export default function DetailsPage({ data }) {
+  const slug = slugify(data.title) + "-" + data.mal_id
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      const res = await fetch("/api/anime", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ slug }),
+      })
+      const data = await res.json()
+      console.log(data)
+    }
+
+    fetchPlayers()
+  }, [])
+
   return (
     <Layout>
       <main className="flex h-72 w-full items-center justify-center">
