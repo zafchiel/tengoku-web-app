@@ -1,8 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import slugify from "@/utils/slugify"
 
 export default function Player({ animeId, animeSlug }) {
-  const searchSlug = slugify(animeSlug) + "-episode-" + animeId
+  const [sources, setSources] = useState([])
+
+  const searchSlug = slugify(animeSlug) + "-episode-1"
   useEffect(() => {
     const fetchAnime = async () => {
       try {
@@ -14,7 +16,7 @@ export default function Player({ animeId, animeSlug }) {
           body: JSON.stringify({ slug: searchSlug }),
         })
         const data = await res.json()
-        console.log(data)
+        setSources(data)
       } catch (error) {
         console.log(error)
       }
@@ -23,5 +25,11 @@ export default function Player({ animeId, animeSlug }) {
     fetchAnime()
   }, [])
 
-  return <div>Player</div>
+  return (
+    <div>
+      {sources?.map((obj) => (
+        <div key={obj.url}>{obj.url}</div>
+      ))}
+    </div>
+  )
 }
