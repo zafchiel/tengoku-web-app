@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout"
+import Player from "@/components/Player"
 import slugify from "@/utils/slugify"
 import { useEffect } from "react"
 
@@ -14,7 +15,6 @@ export default function DetailsPage({ data }) {
         body: JSON.stringify({ slug }),
       })
       const data = await res.json()
-      console.log(data)
     }
 
     fetchPlayers()
@@ -24,6 +24,9 @@ export default function DetailsPage({ data }) {
     <Layout>
       <main className="flex h-72 w-full items-center justify-center">
         <h1 className="text-6xl text-white">{data.title}</h1>
+        <div>
+          <Player animeId={data.mal_id} animeSlug={data.title} />
+        </div>
       </main>
     </Layout>
   )
